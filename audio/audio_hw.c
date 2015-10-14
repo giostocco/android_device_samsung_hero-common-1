@@ -344,6 +344,7 @@ static void select_devices(struct audio_device *adev)
           input_route ? input_route : "none");
 
 	audio_route_reset(adev->ar);
+	audio_route_update_mixer(adev->ar);
 
     if (output_route) {
         audio_route_apply_path(adev->ar, output_route);
