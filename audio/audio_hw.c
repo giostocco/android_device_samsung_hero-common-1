@@ -293,6 +293,16 @@ static int adev_set_voice_volume(struct audio_hw_device *dev, float volume);
  * stream_out mutexes.
  */
 
+static bool route_changed(struct audio_device *adev)
+{
+    int output_device_id = get_output_device_id(adev->out_device);
+    int input_source_id = get_input_source_id(adev->input_source, adev->wb_amr);
+    int new_route_id;
+
+    new_route_id = (1 << (input_source_id + OUT_DEVICE_CNT)) + (1 << output_device_id);
+    return new_route_id != adev->cur_route_id;
+}
+
 /* must be called with hw device mutex locked */
 static void select_devices(struct audio_device *adev)
 {
@@ -519,8 +529,7 @@ static void start_call(struct audio_device *adev)
 
     adev->in_call = true;
 
-    if (adev->out_device == AUDIO_DEVICE_NONE ||
-        adev->out_device == AUDIO_DEVICE_OUT_SPEAKER) {
+    if (adev->out_device == AUDIO_DEVICE_NONE) {
         adev->out_device = AUDIO_DEVICE_OUT_EARPIECE;
     }
     adev->input_source = AUDIO_SOURCE_VOICE_CALL;
@@ -577,7 +586,7 @@ static void adev_set_wb_amr_callback(void *data, int enable)
         adev->wb_amr = enable;
 
         /* reopen the modem PCMs at the new rate */
-        if (adev->in_call) {
+        if (adev->in_call && route_changed(adev)) {
             ALOGV("%s: %s Incall Wide Band support",
                   __func__,
                   enable ? "Turn on" : "Turn off");
@@ -1010,6 +1019,18 @@ static int out_set_parameters(struct audio_stream *stream, const char *kvpairs)
             adev->out_device = output_devices(out) | val;
             select_devices(adev);
 
+            /*
+             * If we switch from earpiece to speaker, we need to fully reset the
+             * modem audio path.
+             */
+            if (adev->in_call) {
+                if (route_changed(adev)) {
+                    stop_call(adev);
+                    start_call(adev);
+                }
+            } else {
+                select_devices(adev);
+            }
         }
     }
     unlock_all_outputs(adev, NULL);
