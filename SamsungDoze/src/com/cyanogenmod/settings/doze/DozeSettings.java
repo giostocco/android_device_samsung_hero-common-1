@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 2016 The CyanogenMod Project
+ * Copyright (C) 2016 The CyanogenMod Project
+ * Copyright (C) 2017 The LineageOS Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,26 +14,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.cyanogenmod.settings.device;
+package com.cyanogenmod.settings.doze;
 
-import android.app.Fragment;
-import android.app.FragmentTransaction;
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.android.settingslib.drawer.SettingsDrawerActivity;
 
-public class SamsungDozeActivity extends SettingsDrawerActivity {
+public class DozeSettings extends SettingsDrawerActivity {
 
-    private static final String TAG = "samsung_doze";
+    private static final String TAG_DOZE = "doze";
 
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        getFragmentManager().beginTransaction().replace(R.id.content_frame,
-                new TouchscreenGestureSettings(), TAG).commit();
+        setContentView(R.layout.doze);
 
-        getActionBar().setDisplayHomeAsUpEnabled(true);
+        getFragmentManager().beginTransaction().replace(R.id.content_frame,
+                new DozeSettingsFragment(), TAG_DOZE).commit();
     }
 
     @Override
