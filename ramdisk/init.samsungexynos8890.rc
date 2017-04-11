@@ -11,6 +11,10 @@ on early-init
     mount debugfs /sys/kernel/debug /sys/kernel/debug
 
 on init
+
+	export LD_SHIM_LIBS "/system/vendor/lib/libwvm.so|libshim_wvm.so"
+	mkdir /preload 0771 system system
+
     start watchdogd
     mkdir /preload 0771 system system
 
