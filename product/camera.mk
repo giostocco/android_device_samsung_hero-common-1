@@ -11,4 +11,4 @@ PRODUCT_COPY_FILES += \
 
 # build.prop
 PRODUCT_PROPERTY_OVERRIDES += \
-	camera.hal1.packagelist=com.skype.raider,com.whatsapp,com.snapchat.android
+	camera.hal1.packagelist=com.skype.raider,com.whatsapp,com.cyworld.camera
