@@ -129,7 +129,7 @@ int camera_configure_streams(const struct camera3_device *device,
 }
 
 const camera_metadata_t * camera_construct_default_request_settings(
-    const struct camera*_device *device , int type)
+    const struct camera3_device *device , int type)
 {
     if(!device)
         return NULL;
