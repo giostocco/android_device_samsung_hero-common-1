@@ -2,8 +2,6 @@
 PRODUCT_PACKAGES += \
 	libion_exynos \
 	libfimg
-#	libion
-#	gralloc.exynos5
 
 # Permissions
 PRODUCT_COPY_FILES += \
@@ -17,7 +15,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 	debug.hwc.force_gpu=1 \
 	ro.bq.gpu_to_cpu_unsupported=1 \
 	ro.opengles.version=196609 \
-	ro.sf.lcd_density=560
+	ro.sf.lcd_density=640
 
 # Properties - HWC - not used on cm/aosp
 PRODUCT_PROPERTY_OVERRIDES += \
