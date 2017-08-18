@@ -23,3 +23,22 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
 	debug.hwc.winupdate=1 \
 	debug.hwc.otf=1
+
+# GPU
+PRODUCT_PROPERTY_OVERRIDES += \
+	debug.composition.type=dyn \
+	debug.hwc.max_hw_overlays=8 \
+	ro.opengles.version=196610 \
+	debug.sf.hw=0 \
+	persist.sys.ui.hw=0 \
+	video.accelerate.hw=1 \
+	debug.egl.profiler=1 \
+	debug.egl.hw=1
+
+# Surface
+PRODUCT_PROPERTY_OVERRIDES += \
+	persist.sys.scrollingcache=4 \
+	persist.sys.purgeable_assets=1 \
+	ro.compcache.default=18 \
+	ro.max.fling_velocity=12000 \
+	ro.min.fling_velocity=8000
