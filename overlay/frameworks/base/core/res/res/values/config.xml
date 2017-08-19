@@ -287,11 +287,6 @@
     <!-- Night display  -->
     <bool name="config_nightDisplayAvailable">true</bool>
 
-    <!-- Default value for proximity check on screen wake
-         NOTE ! - Enable for devices that have a fast response
-         proximity sensor (ideally < 300ms) -->
-    <bool name="config_proximityCheckOnWake">true</bool>
-
     <!-- Control the behavior when the user panic presses the back button.
             0 - Nothing
             1 - Go to home -->
