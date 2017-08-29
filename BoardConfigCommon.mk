@@ -12,6 +12,13 @@ TARGET_BOOTLOADER_BOARD_NAME := universal8890
 TARGET_NO_BOOTLOADER := true
 TARGET_NO_RADIOIMAGE := true
 
+#CPU
+TARGET_ARCH := arm64
+TARGET_ARCH_VARIANT := armv8-a
+TARGET_CPU_ABI := arm64-v8a
+TARGET_CPU_ABI2 :=
+TARGET_CPU_VARIANT := generic
+
 # Binder
 TARGET_USES_64_BIT_BINDER := true
 
@@ -33,6 +40,15 @@ TARGET_UNIFIED_DEVICE := true
 
 # Packaging
 BLOCK_BASED_OTA := true
+
+# Enable dexpreopt to speed boot time
+ifeq ($(HOST_OS),linux)
+  ifneq ($(TARGET_BUILD_VARIANT),userdebug)
+    ifeq ($(WITH_DEXPREOPT),)
+      WITH_DEXPREOPT := true
+    endif
+  endif
+endif
 
 # Properties
 TARGET_SYSTEM_PROP := device/samsung/hero-common/system.prop
