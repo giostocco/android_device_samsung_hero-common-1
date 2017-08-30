@@ -24,41 +24,6 @@ void vendor_load_properties()
     device_variant variant = check_device_and_get_variant();
 
     switch (variant) {
-        case G930F:
-            /* heroltexx */
-            property_set("ro.build.fingerprint", "samsung/heroltexx/herolte:7.0/NRD90M/G930FXXU1ZPLH:user/release-keys");
-            property_set("ro.build.description", "heroltexx-user 7.0 NRD90M G930FXXU1ZPLH release-keys");
-            property_set("ro.product.model", "SM-G930F");
-            property_set("ro.product.device", "heroltexx");
-            break;
-        case G930W8:
-            /* heroltebmc */
-            property_set("ro.build.fingerprint", "samsung/heroltebmc/herolte:7.0/NRD90M/G930W8XXU1ZPLH:user/release-keys");
-            property_set("ro.build.description", "heroltebmc-user 7.0 NRD90M G930W8XXU1ZPLH release-keys");
-            property_set("ro.product.model", "SM-G930W8");
-            property_set("ro.product.device", "heroltebmc");
-            break;
-        case G930S:
-            /* herolteskt */
-            property_set("ro.build.fingerprint", "samsung/herolteskt/herolte:7.0/NRD90M/G930SXXU1ZPLH:user/release-keys");
-            property_set("ro.build.description", "herolteskt-user 7.0 NRD90M G930SXXU1ZPLH release-keys");
-            property_set("ro.product.model", "SM-G930S");
-            property_set("ro.product.device", "herolteskt");
-            break;
-        case G930K:
-            /* heroltektt */
-            property_set("ro.build.fingerprint", "samsung/heroltektt/herolte:7.0/NRD90M/G930KXXU1ZPLH:user/release-keys");
-            property_set("ro.build.description", "heroltektt-user 7.0 NRD90M G930KXXU1ZPLH release-keys");
-            property_set("ro.product.model", "SM-G930K");
-            property_set("ro.product.device", "heroltektt");
-            break;
-        case G930L:
-            /* heroltelgt */
-            property_set("ro.build.fingerprint", "samsung/heroltelgt/herolte:7.0/NRD90M/G930LXXU1ZPLH:user/release-keys");
-            property_set("ro.build.description", "heroltelgt-user 7.0 NRD90M G930LXXU1ZPLH release-keys");
-            property_set("ro.product.model", "SM-G930L");
-            property_set("ro.product.device", "heroltelgt");
-            break;
         case G935W8:
             /* hero2ltebmc */
             property_set("ro.build.fingerprint", "samsung/hero2ltebmc/hero2lte:7.0/NRD90M/G935W8XXU1ZPLH:user/release-keys");
