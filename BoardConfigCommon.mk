@@ -34,15 +34,6 @@ TARGET_UNIFIED_DEVICE := true
 # Packaging
 BLOCK_BASED_OTA := true
 
-# Enable dexpreopt to speed boot time
-ifeq ($(HOST_OS),linux)
-  ifneq ($(TARGET_BUILD_VARIANT),userdebug)
-    ifeq ($(WITH_DEXPREOPT),)
-      WITH_DEXPREOPT := true
-    endif
-  endif
-endif
-
 # Properties
 TARGET_SYSTEM_PROP := device/samsung/hero-common/system.prop
 
