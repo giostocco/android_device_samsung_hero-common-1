@@ -282,7 +282,7 @@
     <bool name="config_carrier_volte_available">true</bool>
 
     <!-- For performance and storage reasons, limit the number of fingerprints per user -->
-    <integer name="config_fingerprintMaxTemplatesPerUser">8</integer>
+    <integer name="config_fingerprintMaxTemplatesPerUser">5</integer>
 
     <!-- Idle Receive current for wifi radio. 0 by default-->
     <integer translatable="false" name="config_wifi_idle_receive_cur_ma">1</integer>
@@ -320,7 +320,7 @@
     <!-- Control the behavior when the user panic presses the back button.
             0 - Nothing
             1 - Go to home -->
-    <integer name="config_backPanicBehavior">1</integer>
+    <integer name="config_backPanicBehavior">0</integer>
 
     <!-- Certain sensor firmwares break with having a batch
          size set. By setting this to false, devices can opt
