@@ -32,7 +32,7 @@ TARGET_INIT_VENDOR_LIB := libinit_sec
 TARGET_UNIFIED_DEVICE := true
 
 # Packaging
-BLOCK_BASED_OTA := true
+BLOCK_BASED_OTA := false
 
 # Properties
 TARGET_SYSTEM_PROP := device/samsung/hero-common/system.prop
@@ -52,3 +52,7 @@ BOARD_SECCOMP_POLICY += device/samsung/hero-common/seccomp
 
 # Inherit from the proprietary version
 -include vendor/samsung/hero-common/BoardConfigVendor.mk
+
+#HWC
+USE_HWC_CSC_THREAD := true
+BOARD_USES_HWC_SERVICES := true

@@ -22,7 +22,7 @@ ro.kernel.checkjni=0
 #Better signal reception
 persist.cust.tel.eons=1
 #Faster Boot-Animation FPS
-boot.fps=30
+boot.fps=60
 #Saves some battery without reducing performances
 power.saving.mode=1
 ro.ril.disable.power.collapse=0
