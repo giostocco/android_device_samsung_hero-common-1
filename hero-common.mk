@@ -22,10 +22,7 @@ PRODUCT_COPY_FILES += \
 	frameworks/native/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml
 
 # Graphics
-# This device is xhdpi.  However the platform doesn't
-# currently contain all of the bitmaps at xhdpi density so
-# we do this little trick to fall back to the hdpi version
-# if the xhdpi doesn't exist.
+# This device is xhdpi.  However the platform doesn't currently contain all of the bitmaps at xhdpi density so we do this little trick to fall back to the hdpi version if the xhdpi doesn't exist.
 PRODUCT_AAPT_CONFIG := xlarge
 PRODUCT_AAPT_PREF_CONFIG := xxxhdpi
 # A list of dpis to select prebuilt apk, in precedence order.
@@ -53,7 +50,6 @@ PRODUCT_PACKAGES += \
 # Mobicore
 PRODUCT_PACKAGES += \
 	keystore.exynos5
-
 
 # widevine
 PRODUCT_PACKAGES += \
