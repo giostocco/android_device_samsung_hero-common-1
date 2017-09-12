@@ -46,6 +46,12 @@ static int ril_connect_if_required(struct ril_handle *ril)
     int ok;
     int rc;
 
+    if (ril->client == NULL) {
+        ALOGE("ril->client is NULL");
+        return -1;
+    }
+
+
     ok = isConnected_RILD(ril->client);
     if (ok) {
         return 0;
@@ -112,6 +118,7 @@ int ril_close(struct ril_handle *ril)
         ALOGE("CloseClient_RILD() failed");
         return -1;
     }
+    ril->client = NULL;
 
     return 0;
 }
