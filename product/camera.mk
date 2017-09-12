@@ -12,5 +12,5 @@ PRODUCT_COPY_FILES += \
 
 # build.prop
 PRODUCT_PROPERTY_OVERRIDES += \
-	camera.hal1.packagelist=com.skype.raider,com.whatsapp,com.cyworld.camera,org.cyanogenmod.snap,com.google.android.GoogleCamera,org.telegram.plus,org.telegram.messenger
- 
+	camera.hal1.packagelist=com.whatsapp,org.cyanogenmod.snap,com.google.android.GoogleCamera,org.telegram.messenger
+
