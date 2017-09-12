@@ -55,6 +55,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     libshim_wvm
 
+# hardware/samsung/AdvancedDisplay (MDNIE)
+PRODUCT_PACKAGES += \
+    AdvancedDisplay
+
 #Packages
 PRODUCT_PACKAGES += \
 	libsamsung_symbols \
