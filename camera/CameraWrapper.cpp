@@ -1,5 +1,5 @@
-// #define LOG_NDEBUG 0
-// #define LOG_PARAMETERS
+#define LOG_NDEBUG 0
+#define LOG_PARAMETERS
 
 #define LOG_TAG "CameraWrapper"
 #include <cutils/log.h>
@@ -103,3 +103,4 @@ static int camera_open_legacy(const struct hw_module_t* module, const char* id, 
         return 0;
     return camera2_device_open(module, id, device);
 }
+

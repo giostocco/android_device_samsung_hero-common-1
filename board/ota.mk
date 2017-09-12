@@ -1,0 +1,2 @@
+# OTA
+BLOCK_BASED_OTA := true 

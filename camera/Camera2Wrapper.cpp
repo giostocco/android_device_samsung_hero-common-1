@@ -1,5 +1,5 @@
-// #define LOG_NDEBUG 0
-// #define LOG_PARAMETERS
+#define LOG_NDEBUG 0
+#define LOG_PARAMETERS
 
 #define LOG_TAG "Camera2Wrapper"
 #include <cutils/log.h>
@@ -104,11 +104,10 @@ static int camera2_set_preview_window(struct camera_device * device,
         struct preview_stream_ops *window)
 {
     int rc = 0;
+    ALOGV("%s->%08X->%08X", __FUNCTION__, (uintptr_t)device, (uintptr_t)(((wrapper_camera2_device_t*)device)->vendor));
 
     if(!device)
         return -EINVAL;
-
-    ALOGV("%s->%08X->%08X", __FUNCTION__, (uintptr_t)device, (uintptr_t)(((wrapper_camera2_device_t*)device)->vendor));
 
     gPreviewWindow = window;
 

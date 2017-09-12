@@ -31,9 +31,6 @@ TARGET_CUSTOM_DTBTOOL := dtbhtoolExynos
 TARGET_INIT_VENDOR_LIB := libinit_sec
 TARGET_UNIFIED_DEVICE := true
 
-# Packaging
-BLOCK_BASED_OTA := true
-
 # Properties
 TARGET_SYSTEM_PROP := device/samsung/hero-common/system.prop
 
@@ -56,3 +53,6 @@ BOARD_SECCOMP_POLICY += device/samsung/hero-common/seccomp
 #HWC
 USE_HWC_CSC_THREAD := true
 BOARD_USES_HWC_SERVICES := true
+
+# WFD
+BOARD_USES_WFD := true
