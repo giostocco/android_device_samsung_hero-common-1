@@ -1,15 +1,7 @@
 <mixer>
-<<<<<<< HEAD
-	<include name="/system/etc/mixer_gains.xml" />
-
-	<pcmdai playback_link="6" />
-	<pcmdai playback_jam_link="7" />
-	<pcmdai playback_deep_link="8" />
-=======
 	<pcmdai playback_link="6" />
 	<pcmdai playback_jam_link="7" />
 	<pcmdai playback_deep_link="3" />
->>>>>>> 3440611... hero: use modified old audio HAL
 	<pcmdai playback_offload_link="11" />
 	<pcmdai capture_link="0" />
 	<pcmdai baseband_link="1" />
@@ -706,11 +698,7 @@
 		<ctl name="LHPF2 Input 1" value="ASRC1IN2L" />
 		<ctl name="AIF1TX1 Input 2" value="LHPF2" />
 		<ctl name="AIF1TX2 Input 2" value="LHPF2" />
-<<<<<<< HEAD
-		!-- default volume -->
-=======
 		<!-- default volume -->
->>>>>>> 3440611... hero: use modified old audio HAL
 		<ctl name="Noise Gate Switch" value="0" />
 		<ctl name="HPOUT1L Impedance Volume" value="113" />
 		<ctl name="HPOUT1R Impedance Volume" value="113" />
@@ -809,11 +797,7 @@
 
 	<path name="incall_nb-headset">
 		<path name="mute-speaker" />
-<<<<<<< HEAD
-		<ctl name="Sample Rate 2" value="16kHz" />		
-=======
 		<ctl name="Sample Rate 2" value="16kHz" />
->>>>>>> 3440611... hero: use modified old audio HAL
 		<ctl name="ASRC1 Rate 1" value="SYNCCLK rate 2" />
 		<ctl name="DSP4 Rate" value="SYNCCLK rate 2" />
 		<ctl name="ISRC2 FSL" value="SYNCCLK rate 2" />
@@ -1069,11 +1053,7 @@
 	<path name="volte_cp_evs-handset">
 		<path name="mute-speaker" />
 		<ctl name="Sample Rate 2" value="32kHz" />
-<<<<<<< HEAD
-		<cl name="Sample Rate 3" value="96kHz" />
-=======
 		<ctl name="Sample Rate 3" value="96kHz" />
->>>>>>> 3440611... hero: use modified old audio HAL
 		<ctl name="ASRC1 Rate 1" value="SYNCCLK rate 2" />
 		<!-- DSP4: 32K -->
 		<ctl name="DSP4 Rate" value="SYNCCLK rate 2" />
@@ -1168,11 +1148,7 @@
 		<ctl name="Sample Rate 3" value="96kHz" />
 		<ctl name="ASRC1 Rate 1" value="SYNCCLK rate 2" />
 		<!-- DSP4: 32K -->
-<<<<<<< HEAD
-		<ctl name="DSP4 Rate" value="SYCCLK rate 2" />
-=======
 		<ctl name="DSP4 Rate" value="SYNCCLK rate 2" />
->>>>>>> 3440611... hero: use modified old audio HAL
 		<!-- ISRC1: 48K <-> 96K -->
 		<ctl name="ISRC1 FSL" value="SYNCCLK rate 1" />
 		<ctl name="ISRC1 FSH" value="SYNCCLK rate 3" />
@@ -1461,11 +1437,7 @@
 		<path name="media-mic" />
 	</path>
 
-<<<<<<< HEAD
-	<path name="recording-bt-co-headset-in">
-=======
 	<path name="recording-bt-sco-headset-in">
->>>>>>> 3440611... hero: use modified old audio HAL
 		<path name="media-bt-sco-headset-in" />
 	</path>
 
@@ -1729,11 +1701,7 @@
 		<path name="communication-speaker-mic" />
 	</path>
 
-<<<<<<< HEAD
-	<path name="voip-headset-mi">
-=======
 	<path name="voip-headset-mic">
->>>>>>> 3440611... hero: use modified old audio HAL
 		<path name="communication-headset-mic" />
 	</path>
 
@@ -1953,11 +1921,7 @@
 		<ctl name="Headset Mic Switch" value="1" />
 		<ctl name="LHPF1 Input 1" value="IN2L" />
 		<ctl name="ISRC2DEC1 Input" value="IN2L" />
-<<<<<<< HEAD
-		<ctl name="AIFTX1 Input 1" value="LHPF1" />
-=======
 		<ctl name="AIF1TX1 Input 1" value="LHPF1" />
->>>>>>> 3440611... hero: use modified old audio HAL
 		<ctl name="AIF1TX2 Input 1" value="LHPF1" />
 	</path>
 
@@ -2184,11 +2148,7 @@
 		<!-- Call recording route -->
 		<ctl name="ISRC1INT1 Input" value="DSP3.1" />
 		<ctl name="LHPF1 Input 1" value="ISRC1INT1" />
-<<<<<<< HEAD
-		<ctl name="AIF1TX1 Input1" value="LHPF1" />
-=======
 		<ctl name="AIF1TX1 Input 1" value="LHPF1" />
->>>>>>> 3440611... hero: use modified old audio HAL
 		<ctl name="AIF1TX2 Input 1" value="LHPF1" />
 	</path>
 
@@ -2429,11 +2389,7 @@
 
 	<path name="volte_cp_wb-headset-mic">
 		<path name="incall_wb-headset-mic" />
-<<<<<<< HEAD
-	<path>
-=======
 	</path>
->>>>>>> 3440611... hero: use modified old audio HAL
 
 	<path name="volte_cp_wb-headphone-mic">
 		<path name="incall_wb-headphone-mic" />
@@ -2654,11 +2610,7 @@
 
 	<!-- VoLTE VT CP WB -->
 	<path name="volte_vt_cp_wb-handset-mic">
-<<<<<<< HEAD
-		<path name="incall_wb-handst-mic" />
-=======
 		<path name="incall_wb-handset-mic" />
->>>>>>> 3440611... hero: use modified old audio HAL
 	</path>
 
 	<path name="volte_vt_cp_wb-speaker-mic">
@@ -2894,10 +2846,6 @@
 		<param name="HPOUT3 Digital Switch" id="0" />
 		<param name="HPOUT1 Digital Switch" id="1" />
 		<param name="HPOUT3 Digital Switch" id="1" />
-<<<<<<< HEAD
-		<param nme="SPK Enable Switch" id="0" />
-=======
 		<param name="SPK Enable Switch" id="0" />
->>>>>>> 3440611... hero: use modified old audio HAL
 	</path>
 </mixer>
