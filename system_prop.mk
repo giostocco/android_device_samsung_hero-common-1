@@ -1,18 +1,3 @@
-#
-# Copyright (C) 2017 Fernando Von Arx <fer.vonarx@gmail.com>
-# Copyright (C) 2017 Jesse Chan <cjx123@outlook.com>
-#
-# This program is free software; you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation; either version 3 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-
 # Dalvik/Art
 PRODUCT_PROPERTY_OVERRIDES += \
 	ro.sys.fw.dex2oat_thread_count=4 \
@@ -68,10 +53,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 	ro.sf.lcd_density=640 \
 	debug.hwc.force_gpu=1
 
-# Properties - HWC - not used on cm/aosp
-PRODUCT_PROPERTY_OVERRIDES += \
-	debug.hwc.winupdate=1 \
-	debug.hwc.otf=1
 
 # NFC
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -98,11 +79,11 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # ResurrectionRemix
 PRODUCT_PROPERTY_OVERRIDES += \
-	debug.hwc.max_hw_overlays=0 \
+	debug.hwc.max_hw_overlays=8 \
 	debug.sf.hw=1 \
 	persist.sys.ui.hw=1 \
 	debug.egl.hw=1
-	
+
 # Surface
 PRODUCT_PROPERTY_OVERRIDES += \
 	persist.sys.scrollingcache=1 \
@@ -112,10 +93,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
 	ro.min.fling_velocity=8000
 
 ADDITIONAL_DEFAULT_PROPERTIES += \
--	ro.secure=0 \
--	ro.adb.secure=0 \
--	ro.hardware=universal8890 \
--	persist.service.adb.enable=1 \
--	persist.service.debuggable=1 \
--	persist.sys.usb.config=adb \
--	ro.securestorage.support=false
+	ro.secure=0 \
+	ro.adb.secure=0 \
+	ro.hardware=universal8890 \
+	persist.service.adb.enable=1 \
+	persist.service.debuggable=1 \
+	persist.sys.usb.config=adb \
+	ro.securestorage.support=false
