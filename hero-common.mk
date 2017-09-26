@@ -147,7 +147,8 @@ PRODUCT_PACKAGES += \
 
 # build.prop
 PRODUCT_PROPERTY_OVERRIDES += \
-	camera.hal3.packagelist=com.whatsapp,org.cyanogenmod.snap,com.google.android.GoogleCamera,org.telegram.messenger
+	camera.hal1.packagelist=com.whatsapp,com.google.android.GoogleCamera,org.telegram.messenger
+	camera.hal3.packagelist=org.cyanogenmod.snap.com,com.oneplus.camera
 
 # Fingerprint
 PRODUCT_PACKAGES += \
