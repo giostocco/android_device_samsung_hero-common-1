@@ -1,6 +1,7 @@
 #
-# Copyright (C) 2017 Fernando Von Arx <fer.vonarx@gmail.com>
-# Copyright (C) 2017 Jesse Chan <cjx123@outlook.com>
+# Copyright (C) 2017 Fernando Von Arx 
+# <fer.vonarx@gmail.com> Copyright (C) 2017 Jesse Chan 
+# <cjx123@outlook.com>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -57,6 +58,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
 	keystore.exynos5
 
+# hardware/samsung/AdvancedDisplay (MDNIE)
+PRODUCT_PACKAGES += \
+    AdvancedDisplay
+
 # Packages
 PRODUCT_PACKAGES += \
 	libsamsung_symbols \
@@ -71,10 +76,10 @@ PRODUCT_PACKAGES += \
 # Audio
 PRODUCT_COPY_FILES += \
 	$(DEVICE_PATH)/configs/audio/audio_policy.conf:system/etc/audio_policy.conf \
-	$(DEVICE_PATH)/configs/audio/mixer_gains.xml:system/etc/mixer_gains.xml
+	$(DEVICE_PATH)/configs/audio/mixer_gains.xml:system/etc/mixer_gains.xml \
 	$(DEVICE_PATH)/configs/audio/audio_effects.conf:system/etc/audio_effects.conf \
-	$(DEVICE_PATH)/configs/audio/mixer_paths_0.xml:system/etc/mixer_paths_0.xml
-	$(DEVICE_PATH)/configs/audio/mixer_paths.xml:system/etc/mixer_paths.xml
+	$(DEVICE_PATH)/configs/audio/mixer_paths_0.xml:system/etc/mixer_paths_0.xml \
+	$(DEVICE_PATH)/configs/audio/mixer_paths.xml:system/etc/mixer_paths.xml \
 
 PRODUCT_PACKAGES += \
 	audio.a2dp.default \
@@ -82,6 +87,11 @@ PRODUCT_PACKAGES += \
 	audio.r_submix.default \
 	audio.primary.universal8890 \
 	libtinycompress
+
+# Properties
+PRODUCT_PROPERTY_OVERRIDES += \
+	af.fast_track_multiplier=1 \
+	audio_hal.force_voice_config=wide
 
 # Bluetooth
 PRODUCT_PACKAGES += \
@@ -131,8 +141,13 @@ PRODUCT_COPY_FILES += \
 # Camera
 PRODUCT_PACKAGES += \
 	camera.exynos5 \
+	camera.vendor.exynos5.so \
 	libexynoscamera_shim \
 	Snap
+
+# build.prop
+PRODUCT_PROPERTY_OVERRIDES += \
+	camera.hal3.packagelist=com.whatsapp,org.cyanogenmod.snap,com.google.android.GoogleCamera,org.telegram.messenger
 
 # Fingerprint
 PRODUCT_PACKAGES += \
@@ -151,7 +166,41 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
 	libfimg \
 	libion \
+	libion_exynos \
 	gralloc.exynos5
+
+# Surface
+PRODUCT_PROPERTY_OVERRIDES += \
+	persist.sys.scrollingcache=4 \
+	persist.sys.purgeable_assets=1 \
+	ro.compcache.default=18 \
+	ro.max.fling_velocity=12000 \
+	ro.min.fling_velocity=8000
+
+# Properties
+PRODUCT_PROPERTY_OVERRIDES += \
+	ro.bq.gpu_to_cpu_unsupported=0 \
+	ro.opengles.version=196609 \
+	debug.hwc.force_gpu=1 \
+	ro.bq.gpu_to_cpu_unsupported=1 \
+	ro.opengles.version=196609 \
+	ro.sf.lcd_density=540
+
+# GPU
+PRODUCT_PROPERTY_OVERRIDES += \
+	debug.composition.type=dyn \
+	debug.hwc.max_hw_overlays=8 \
+	ro.opengles.version=196610 \
+	debug.sf.hw=0 \
+	persist.sys.ui.hw=0 \
+	video.accelerate.hw=1 \
+	debug.egl.profiler=1 \
+	debug.egl.hw=1
+
+# Properties - HWC - not used on cm/aosp
+PRODUCT_PROPERTY_OVERRIDES += \
+	debug.hwc.winupdate=1 \
+	debug.hwc.otf=1
 
 # Input
 PRODUCT_COPY_FILES += \
