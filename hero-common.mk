@@ -1,18 +1,4 @@
-#
-# Copyright (C) 2017 Fernando Von Arx 
-# <fer.vonarx@gmail.com> Copyright (C) 2017 Jesse Chan 
-# <cjx123@outlook.com>
-#
-# This program is free software; you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation; either version 3 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
+# Copyright (C) SaschaNes - Sascha Nesterovic
 
 # Common Overlays
 DEVICE_PACKAGE_OVERLAYS += device/samsung/hero-common/overlay
@@ -41,7 +27,7 @@ TARGET_SCREEN_WIDTH := 1440
 
 # Power
 PRODUCT_PACKAGES += \
-	power.universal8890
+	power.exynos5
 
 # Lights
 PRODUCT_PACKAGES += \
@@ -141,14 +127,12 @@ PRODUCT_COPY_FILES += \
 # Camera
 PRODUCT_PACKAGES += \
 	camera.exynos5 \
-	camera.vendor.exynos5.so \
-	libexynoscamera_shim \
 	Snap
 
 # build.prop
 PRODUCT_PROPERTY_OVERRIDES += \
-	camera.hal1.packagelist=com.whatsapp,com.google.android.GoogleCamera,org.telegram.messenger
-	camera.hal3.packagelist=org.cyanogenmod.snap.com,com.oneplus.camera
+	camera.hal1.packagelist=com.whatsapp,com.google.android.GoogleCamera,org.telegram.messenger,com.oneplus.camera
+	camera.hal3.packagelist=org.cyanogenmod.snap.com
 
 # Fingerprint
 PRODUCT_PACKAGES += \

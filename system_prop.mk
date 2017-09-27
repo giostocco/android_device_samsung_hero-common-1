@@ -79,9 +79,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # ResurrectionRemix
 PRODUCT_PROPERTY_OVERRIDES += \
-	debug.hwc.max_hw_overlays=8 \
+	debug.hwc.force_gpu=0 \
+	debug.hwc.max_hw_overlays=1 \
 	debug.sf.hw=1 \
-	persist.sys.ui.hw=1 \
+	persist.sys.ui.hw=true \
 	debug.egl.hw=1
 
 # Surface

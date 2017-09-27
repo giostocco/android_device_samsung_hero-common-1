@@ -48,6 +48,9 @@ TARGET_SEC_FP_HAL_VARIANT := bauth
 # Lockscreen charging info: real time values
 BOARD_GLOBAL_CFLAGS += -DBATTERY_REAL_INFO
 
+# Virtual Display
+BOARD_USES_VIRTUAL_DISPLAY := true
+
 # SELinux
 BOARD_SEPOLICY_DIRS := device/samsung/hero-common/sepolicy
 
