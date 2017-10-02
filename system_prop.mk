@@ -26,17 +26,17 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # Hwui
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.hwui.use_gpu_pixel_buffers=true \
-    ro.hwui.texture_cache_size=176 \
-    ro.hwui.layer_cache_size=106 \
-    ro.hwui.path_cache_size=64 \
-    ro.hwui.shape_cache_size=16 \
-    ro.hwui.gradient_cache_size=8 \
+    ro.hwui.texture_cache_size=88 \
+    ro.hwui.layer_cache_size=58 \
+    ro.hwui.path_cache_size=16 \
+    ro.hwui.shape_cache_size=4 \
+    ro.hwui.gradient_cache_size=2 \
     ro.hwui.drop_shadow_cache_size=24 \
     ro.hwui.r_buffer_cache_size=24 \
-    ro.hwui.text_small_cache_width=4096 \
-    ro.hwui.text_small_cache_height=4096 \
-    ro.hwui.text_large_cache_width=8192 \
-    ro.hwui.text_large_cache_height=8192
+    ro.hwui.text_small_cache_width=1024 \
+    ro.hwui.text_small_cache_height=1024 \
+    ro.hwui.text_large_cache_width=4069 \
+    ro.hwui.text_large_cache_height=2048
 
 # Network
 # Define default initial receive window size in segments.
@@ -103,7 +103,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # Power-Management
 PRODUCT_PROPERTY_OVERRIDES += \
 	pm.sleep_mode=1
-	
+
 # Surface
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.sys.scrollingcache=1 \
