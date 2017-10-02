@@ -27,7 +27,7 @@
 
 #include "ril_interface.h"
 
-#define VOLUME_STEPS_DEFAULT  "5"
+#define VOLUME_STEPS_DEFAULT  "8"
 #define VOLUME_STEPS_PROPERTY "ro.config.vc_call_vol_steps"
 
 /* Audio WB AMR callback */
