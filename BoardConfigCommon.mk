@@ -131,7 +131,7 @@ EXTENDED_FONT_FOOTPRINT := true
 BLOCK_BASED_OTA := true
 
 # Power Hal
-TARGET_POWERHAL_VARIANT := samsung
+#TARGET_POWERHAL_VARIANT := samsung
 
 # Properties
 TARGET_SYSTEM_PROP := device/samsung/hero-common/system.prop

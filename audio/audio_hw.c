@@ -4,7 +4,11 @@
  * Copyright (C) 2013-2015 The CyanogenMod Project
  *               Daniel Hillenbrand <codeworkx@cyanogenmod.com>
  *               Guillaume "XpLoDWilD" Lesniak <xplodgui@gmail.com>
+<<<<<<< HEAD
  * Copyright (c) 2015-2017 Andreas Schneider <asn@cryptomilk.org>
+=======
+ * Copyright (c) 2015-2016 Andreas Schneider <asn@cryptomilk.org>
+>>>>>>> 05aac4e... hero: update audio
  * Copyright (c) 2015-2017 Christopher N. Hesse <raymanfx@gmail.org>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -85,6 +89,7 @@
 
 #define LOW_LATENCY_OUTPUT_PERIOD_SIZE 240
 #define LOW_LATENCY_OUTPUT_PERIOD_COUNT 2
+<<<<<<< HEAD
 
 #define AUDIO_CAPTURE_PERIOD_SIZE 1024
 #define AUDIO_CAPTURE_PERIOD_COUNT 4
@@ -100,6 +105,18 @@
 #define HDMI_MULTI_DEFAULT_CHANNEL_COUNT 6 /* 5.1 */
 #define HDMI_MULTI_DEFAULT_SAMPLING_RATE 48000
 
+=======
+
+#define AUDIO_CAPTURE_PERIOD_SIZE 320
+#define AUDIO_CAPTURE_PERIOD_COUNT 2
+
+#define AUDIO_CAPTURE_LOW_LATENCY_PERIOD_SIZE 240
+#define AUDIO_CAPTURE_LOW_LATENCY_PERIOD_COUNT 2
+
+#define SCO_CAPTURE_PERIOD_SIZE 240
+#define SCO_CAPTURE_PERIOD_COUNT 2
+
+>>>>>>> 05aac4e... hero: update audio
 struct pcm_config pcm_config_fast = {
     .channels = 2,
     .rate = 48000,
@@ -197,7 +214,11 @@ struct audio_device {
     bool bluetooth_nrec;
     bool wb_amr;
     bool two_mic_control;
+<<<<<<< HEAD
     bool two_mic_disabled;
+=======
+	bool two_mic_disabled;
+>>>>>>> 05aac4e... hero: update audio
 
     audio_channel_mask_t in_channel_mask;
 
@@ -321,6 +342,7 @@ static int get_output_device_id(audio_devices_t device)
 static int get_input_source_id(audio_source_t source, bool wb_amr)
 {
     switch (source) {
+<<<<<<< HEAD
         case AUDIO_SOURCE_DEFAULT:
             return IN_SOURCE_NONE;
         case AUDIO_SOURCE_MIC:
@@ -338,6 +360,25 @@ static int get_input_source_id(audio_source_t source, bool wb_amr)
             return IN_SOURCE_VOICE_CALL;
         default:
             return IN_SOURCE_NONE;
+=======
+    case AUDIO_SOURCE_DEFAULT:
+        return IN_SOURCE_NONE;
+    case AUDIO_SOURCE_MIC:
+        return IN_SOURCE_MIC;
+    case AUDIO_SOURCE_CAMCORDER:
+        return IN_SOURCE_CAMCORDER;
+    case AUDIO_SOURCE_VOICE_RECOGNITION:
+        return IN_SOURCE_VOICE_RECOGNITION;
+    case AUDIO_SOURCE_VOICE_COMMUNICATION:
+        return IN_SOURCE_VOICE_COMMUNICATION;
+    case AUDIO_SOURCE_VOICE_CALL:
+        if (wb_amr) {
+            return IN_SOURCE_VOICE_CALL_WB;
+        }
+        return IN_SOURCE_VOICE_CALL;
+    default:
+        return IN_SOURCE_NONE;
+>>>>>>> 05aac4e... hero: update audio
     }
 }
 
@@ -428,11 +469,14 @@ static void select_devices(struct audio_device *adev)
      */
     audio_route_reset(adev->ar);
     audio_route_update_mixer(adev->ar);
+<<<<<<< HEAD
 
     /*
      * Give the DSP some time before loading the new firmware modes
      */
     usleep(50);
+=======
+>>>>>>> 05aac4e... hero: update audio
 
     /*
      * Apply the new audio routes and set volumes
@@ -493,7 +537,11 @@ static void start_bt_sco(struct audio_device *adev)
 
     adev->pcm_sco_tx = pcm_open(PCM_CARD,
                                 PCM_DEVICE_SCO,
+<<<<<<< HEAD
                                 PCM_IN | PCM_MONOTONIC,
+=======
+                                PCM_IN,
+>>>>>>> 05aac4e... hero: update audio
                                 sco_config);
     if (adev->pcm_sco_tx && !pcm_is_ready(adev->pcm_sco_tx)) {
         ALOGE("%s: cannot open PCM SCO TX stream: %s",
@@ -569,7 +617,11 @@ static int start_voice_call(struct audio_device *adev)
 
     adev->pcm_voice_tx = pcm_open(PCM_CARD,
                                   PCM_DEVICE_VOICE,
+<<<<<<< HEAD
                                   PCM_IN | PCM_MONOTONIC,
+=======
+                                  PCM_IN,
+>>>>>>> 05aac4e... hero: update audio
                                   voice_config);
     if (adev->pcm_voice_tx != NULL && !pcm_is_ready(adev->pcm_voice_tx)) {
         ALOGE("%s: cannot open PCM voice TX stream: %s",
@@ -818,7 +870,11 @@ static int start_input_stream(struct stream_in *in)
 
     in->pcm = pcm_open(PCM_CARD,
                        PCM_DEVICE,
+<<<<<<< HEAD
                        PCM_IN | PCM_MONOTONIC,
+=======
+                       PCM_IN,
+>>>>>>> 05aac4e... hero: update audio
                        in->config);
     if (in->pcm && !pcm_is_ready(in->pcm)) {
         ALOGE("pcm_open() failed: %s", pcm_get_error(in->pcm));
@@ -959,6 +1015,7 @@ static ssize_t read_frames(struct stream_in *in, void *buffer, ssize_t frames)
 
         if (in->resampler != NULL) {
             in->resampler->resample_from_provider(in->resampler,
+<<<<<<< HEAD
                     (int16_t *)((char *)buffer + pcm_frames_to_bytes(in->pcm, frames_wr)),
                                                   &frames_rd);
         } else {
@@ -971,6 +1028,22 @@ static ssize_t read_frames(struct stream_in *in, void *buffer, ssize_t frames)
                 memcpy((char *)buffer + pcm_frames_to_bytes(in->pcm, frames_wr),
                         buf.raw,
                         pcm_frames_to_bytes(in->pcm, buf.frame_count));
+=======
+                                                  (int16_t *)((char *)buffer +
+                                                              frames_wr * frame_size),
+                                                  &frames_rd);
+        } else {
+            struct resampler_buffer buf = {
+                { raw : NULL, },
+                frame_count : frames_rd,
+            };
+            get_next_buffer(&in->buf_provider, &buf);
+            if (buf.raw != NULL) {
+                memcpy((char *)buffer +
+                       frames_wr * frame_size,
+                       buf.raw,
+                       buf.frame_count * frame_size);
+>>>>>>> 05aac4e... hero: update audio
                 frames_rd = buf.frame_count;
             }
             release_buffer(&in->buf_provider, &buf);
@@ -1496,6 +1569,8 @@ static int in_standby(struct audio_stream *stream)
 
     in->last_read_time_us = 0;
 
+    in->last_read_time_us = 0;
+
     return 0;
 }
 
@@ -1675,6 +1750,15 @@ static uint32_t in_get_input_frames_lost(struct audio_stream_in *stream __unused
 
 static int in_add_audio_effect(const struct audio_stream *stream __unused,
                                effect_handle_t effect __unused)
+<<<<<<< HEAD
+=======
+{
+    return 0;
+}
+
+static int in_remove_audio_effect(const struct audio_stream *stream __unused,
+                                  effect_handle_t effect __unused)
+>>>>>>> 05aac4e... hero: update audio
 {
     return 0;
 }
@@ -1739,6 +1823,7 @@ static int adev_open_output_stream(struct audio_hw_device *dev,
         devices = AUDIO_DEVICE_OUT_SPEAKER;
     out->device = devices;
 
+<<<<<<< HEAD
     if (flags & AUDIO_OUTPUT_FLAG_FAST) {
         ALOGV("*** %s: Fast buffer pcm config", __func__);
         out->config = pcm_config_fast;
@@ -1749,6 +1834,18 @@ static int adev_open_output_stream(struct audio_hw_device *dev,
         out->config = pcm_config_deep;
         out->pcm_device = PCM_DEVICE_DEEP;
         type = OUTPUT_DEEP_BUF;
+=======
+    if (flags & AUDIO_OUTPUT_FLAG_DEEP_BUFFER) {
+	ALOGV("*** %s: Deep buffer pcm config", __func__);
+        out->config = pcm_config_deep;
+        out->pcm_device = PCM_DEVICE_DEEP;
+        type = OUTPUT_DEEP_BUF;
+    } else {
+        ALOGV("*** %s: Fast buffer pcm config", __func__);
+        out->config = pcm_config_fast;
+        out->pcm_device = PCM_DEVICE_PLAYBACK;
+        type = OUTPUT_LOW_LATENCY;
+>>>>>>> 05aac4e... hero: update audio
     }
 
     out->stream.common.get_sample_rate = out_get_sample_rate;
@@ -1907,6 +2004,7 @@ static int voice_set_volume(struct audio_hw_device *dev, float volume)
     return 0;
 }
 
+<<<<<<< HEAD
 static int adev_set_voice_volume(struct audio_hw_device *dev, float volume)
 {
     struct audio_device *adev = (struct audio_device *)dev;
@@ -1921,6 +2019,8 @@ static int adev_set_voice_volume(struct audio_hw_device *dev, float volume)
     return 0;
 }
 
+=======
+>>>>>>> 05aac4e... hero: update audio
 static int adev_set_master_volume(struct audio_hw_device *dev __unused,
                                   float volume __unused)
 {
@@ -1956,7 +2056,11 @@ static int adev_set_mic_mute(struct audio_hw_device *dev, bool state)
     struct audio_device *adev = (struct audio_device *)dev;
     enum _MuteCondition mute_condition = state ? TX_MUTE : TX_UNMUTE;
 
+<<<<<<< HEAD
     ALOGT("%s: Set mic mute: %d\n", __func__, state);
+=======
+    ALOGV("*** %s: set mic mute: %d\n", __func__, state);
+>>>>>>> 05aac4e... hero: update audio
 
     pthread_mutex_lock(&adev->lock);
     if (adev->in_call) {
