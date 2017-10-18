@@ -72,9 +72,12 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
 	$(DEVICE_PATH)/configs/audio/audio_policy.conf:system/etc/audio_policy.conf \
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	$(DEVICE_PATH)/configs/audio/mixer_gains.xml:system/etc/mixer_gains.xml \
 >>>>>>> b8f0456... hero: restore stock mixer_paths/gains and policy and modify audio driver
+=======
+>>>>>>> 42474ce... hero: fix mic volume thanks to alex and gwolf2u
 	$(DEVICE_PATH)/configs/audio/mixer_paths.xml:system/etc/mixer_paths.xml
 
 PRODUCT_PACKAGES += \
