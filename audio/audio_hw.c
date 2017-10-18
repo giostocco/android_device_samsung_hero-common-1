@@ -5,10 +5,14 @@
  *               Daniel Hillenbrand <codeworkx@cyanogenmod.com>
  *               Guillaume "XpLoDWilD" Lesniak <xplodgui@gmail.com>
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright (c) 2015-2017 Andreas Schneider <asn@cryptomilk.org>
 =======
  * Copyright (c) 2015-2016 Andreas Schneider <asn@cryptomilk.org>
 >>>>>>> 05aac4e... hero: update audio
+=======
+ * Copyright (c) 2015-2017 Andreas Schneider <asn@cryptomilk.org>
+>>>>>>> b8f0456... hero: restore stock mixer_paths/gains and policy and modify audio driver
  * Copyright (c) 2015-2017 Christopher N. Hesse <raymanfx@gmail.org>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -107,8 +111,8 @@
 
 =======
 
-#define AUDIO_CAPTURE_PERIOD_SIZE 320
-#define AUDIO_CAPTURE_PERIOD_COUNT 2
+#define AUDIO_CAPTURE_PERIOD_SIZE 1024
+#define AUDIO_CAPTURE_PERIOD_COUNT 4
 
 #define AUDIO_CAPTURE_LOW_LATENCY_PERIOD_SIZE 240
 #define AUDIO_CAPTURE_LOW_LATENCY_PERIOD_COUNT 2
@@ -116,7 +120,15 @@
 #define SCO_CAPTURE_PERIOD_SIZE 240
 #define SCO_CAPTURE_PERIOD_COUNT 2
 
+<<<<<<< HEAD
 >>>>>>> 05aac4e... hero: update audio
+=======
+#define HDMI_MULTI_PERIOD_SIZE  336
+#define HDMI_MULTI_PERIOD_COUNT 8
+#define HDMI_MULTI_DEFAULT_CHANNEL_COUNT 6 /* 5.1 */
+#define HDMI_MULTI_DEFAULT_SAMPLING_RATE 48000
+
+>>>>>>> b8f0456... hero: restore stock mixer_paths/gains and policy and modify audio driver
 struct pcm_config pcm_config_fast = {
     .channels = 2,
     .rate = 48000,
@@ -215,10 +227,14 @@ struct audio_device {
     bool wb_amr;
     bool two_mic_control;
 <<<<<<< HEAD
+<<<<<<< HEAD
     bool two_mic_disabled;
 =======
 	bool two_mic_disabled;
 >>>>>>> 05aac4e... hero: update audio
+=======
+    bool two_mic_disabled;
+>>>>>>> b8f0456... hero: restore stock mixer_paths/gains and policy and modify audio driver
 
     audio_channel_mask_t in_channel_mask;
 
@@ -343,6 +359,9 @@ static int get_input_source_id(audio_source_t source, bool wb_amr)
 {
     switch (source) {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> b8f0456... hero: restore stock mixer_paths/gains and policy and modify audio driver
         case AUDIO_SOURCE_DEFAULT:
             return IN_SOURCE_NONE;
         case AUDIO_SOURCE_MIC:
@@ -360,6 +379,7 @@ static int get_input_source_id(audio_source_t source, bool wb_amr)
             return IN_SOURCE_VOICE_CALL;
         default:
             return IN_SOURCE_NONE;
+<<<<<<< HEAD
 =======
     case AUDIO_SOURCE_DEFAULT:
         return IN_SOURCE_NONE;
@@ -379,6 +399,8 @@ static int get_input_source_id(audio_source_t source, bool wb_amr)
     default:
         return IN_SOURCE_NONE;
 >>>>>>> 05aac4e... hero: update audio
+=======
+>>>>>>> b8f0456... hero: restore stock mixer_paths/gains and policy and modify audio driver
     }
 }
 
@@ -479,6 +501,11 @@ static void select_devices(struct audio_device *adev)
 >>>>>>> 05aac4e... hero: update audio
 
     /*
+     * Give the DSP some time before loading the new firmware modes
+     */
+    usleep(50);
+
+    /*
      * Apply the new audio routes and set volumes
      */
     if (output_route != NULL) {
@@ -538,10 +565,14 @@ static void start_bt_sco(struct audio_device *adev)
     adev->pcm_sco_tx = pcm_open(PCM_CARD,
                                 PCM_DEVICE_SCO,
 <<<<<<< HEAD
+<<<<<<< HEAD
                                 PCM_IN | PCM_MONOTONIC,
 =======
                                 PCM_IN,
 >>>>>>> 05aac4e... hero: update audio
+=======
+                                PCM_IN | PCM_MONOTONIC,
+>>>>>>> b8f0456... hero: restore stock mixer_paths/gains and policy and modify audio driver
                                 sco_config);
     if (adev->pcm_sco_tx && !pcm_is_ready(adev->pcm_sco_tx)) {
         ALOGE("%s: cannot open PCM SCO TX stream: %s",
@@ -618,10 +649,14 @@ static int start_voice_call(struct audio_device *adev)
     adev->pcm_voice_tx = pcm_open(PCM_CARD,
                                   PCM_DEVICE_VOICE,
 <<<<<<< HEAD
+<<<<<<< HEAD
                                   PCM_IN | PCM_MONOTONIC,
 =======
                                   PCM_IN,
 >>>>>>> 05aac4e... hero: update audio
+=======
+                                  PCM_IN | PCM_MONOTONIC,
+>>>>>>> b8f0456... hero: restore stock mixer_paths/gains and policy and modify audio driver
                                   voice_config);
     if (adev->pcm_voice_tx != NULL && !pcm_is_ready(adev->pcm_voice_tx)) {
         ALOGE("%s: cannot open PCM voice TX stream: %s",
@@ -871,10 +906,14 @@ static int start_input_stream(struct stream_in *in)
     in->pcm = pcm_open(PCM_CARD,
                        PCM_DEVICE,
 <<<<<<< HEAD
+<<<<<<< HEAD
                        PCM_IN | PCM_MONOTONIC,
 =======
                        PCM_IN,
 >>>>>>> 05aac4e... hero: update audio
+=======
+                       PCM_IN | PCM_MONOTONIC,
+>>>>>>> b8f0456... hero: restore stock mixer_paths/gains and policy and modify audio driver
                        in->config);
     if (in->pcm && !pcm_is_ready(in->pcm)) {
         ALOGE("pcm_open() failed: %s", pcm_get_error(in->pcm));
@@ -1016,6 +1055,7 @@ static ssize_t read_frames(struct stream_in *in, void *buffer, ssize_t frames)
         if (in->resampler != NULL) {
             in->resampler->resample_from_provider(in->resampler,
 <<<<<<< HEAD
+<<<<<<< HEAD
                     (int16_t *)((char *)buffer + pcm_frames_to_bytes(in->pcm, frames_wr)),
                                                   &frames_rd);
         } else {
@@ -1031,19 +1071,28 @@ static ssize_t read_frames(struct stream_in *in, void *buffer, ssize_t frames)
 =======
                                                   (int16_t *)((char *)buffer +
                                                               frames_wr * frame_size),
+=======
+                    (int16_t *)((char *)buffer + pcm_frames_to_bytes(in->pcm, frames_wr)),
+>>>>>>> b8f0456... hero: restore stock mixer_paths/gains and policy and modify audio driver
                                                   &frames_rd);
         } else {
             struct resampler_buffer buf = {
-                { raw : NULL, },
-                frame_count : frames_rd,
+                .raw = NULL,
+                .frame_count = frames_rd,
             };
             get_next_buffer(&in->buf_provider, &buf);
             if (buf.raw != NULL) {
+<<<<<<< HEAD
                 memcpy((char *)buffer +
                        frames_wr * frame_size,
                        buf.raw,
                        buf.frame_count * frame_size);
 >>>>>>> 05aac4e... hero: update audio
+=======
+                memcpy((char *)buffer + pcm_frames_to_bytes(in->pcm, frames_wr),
+                        buf.raw,
+                        pcm_frames_to_bytes(in->pcm, buf.frame_count));
+>>>>>>> b8f0456... hero: restore stock mixer_paths/gains and policy and modify audio driver
                 frames_rd = buf.frame_count;
             }
             release_buffer(&in->buf_provider, &buf);
@@ -1566,8 +1615,11 @@ static int in_standby(struct audio_stream *stream)
 
     pthread_mutex_unlock(&in->dev->lock);
     unlock_input_stream(in);
+<<<<<<< HEAD
 
     in->last_read_time_us = 0;
+=======
+>>>>>>> b8f0456... hero: restore stock mixer_paths/gains and policy and modify audio driver
 
     in->last_read_time_us = 0;
 
@@ -1763,12 +1815,15 @@ static int in_remove_audio_effect(const struct audio_stream *stream __unused,
     return 0;
 }
 
+<<<<<<< HEAD
 static int in_remove_audio_effect(const struct audio_stream *stream __unused,
                                   effect_handle_t effect __unused)
 {
     return 0;
 }
 
+=======
+>>>>>>> b8f0456... hero: restore stock mixer_paths/gains and policy and modify audio driver
 static int in_get_capture_position(const struct audio_stream_in *stream,
                                    int64_t *frames,
                                    int64_t *time)
@@ -1824,6 +1879,7 @@ static int adev_open_output_stream(struct audio_hw_device *dev,
     out->device = devices;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     if (flags & AUDIO_OUTPUT_FLAG_FAST) {
         ALOGV("*** %s: Fast buffer pcm config", __func__);
         out->config = pcm_config_fast;
@@ -1841,11 +1897,22 @@ static int adev_open_output_stream(struct audio_hw_device *dev,
         out->pcm_device = PCM_DEVICE_DEEP;
         type = OUTPUT_DEEP_BUF;
     } else {
+=======
+    if (flags & AUDIO_OUTPUT_FLAG_FAST) {
+>>>>>>> b8f0456... hero: restore stock mixer_paths/gains and policy and modify audio driver
         ALOGV("*** %s: Fast buffer pcm config", __func__);
         out->config = pcm_config_fast;
-        out->pcm_device = PCM_DEVICE_PLAYBACK;
+        out->pcm_device = PCM_DEVICE;
         type = OUTPUT_LOW_LATENCY;
+<<<<<<< HEAD
 >>>>>>> 05aac4e... hero: update audio
+=======
+    } else {
+        ALOGV("*** %s: Deep buffer pcm config", __func__);
+        out->config = pcm_config_deep;
+        out->pcm_device = PCM_DEVICE_DEEP;
+        type = OUTPUT_DEEP_BUF;
+>>>>>>> b8f0456... hero: restore stock mixer_paths/gains and policy and modify audio driver
     }
 
     out->stream.common.get_sample_rate = out_get_sample_rate;
@@ -2005,6 +2072,9 @@ static int voice_set_volume(struct audio_hw_device *dev, float volume)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> b8f0456... hero: restore stock mixer_paths/gains and policy and modify audio driver
 static int adev_set_voice_volume(struct audio_hw_device *dev, float volume)
 {
     struct audio_device *adev = (struct audio_device *)dev;
@@ -2019,8 +2089,11 @@ static int adev_set_voice_volume(struct audio_hw_device *dev, float volume)
     return 0;
 }
 
+<<<<<<< HEAD
 =======
 >>>>>>> 05aac4e... hero: update audio
+=======
+>>>>>>> b8f0456... hero: restore stock mixer_paths/gains and policy and modify audio driver
 static int adev_set_master_volume(struct audio_hw_device *dev __unused,
                                   float volume __unused)
 {
@@ -2057,10 +2130,14 @@ static int adev_set_mic_mute(struct audio_hw_device *dev, bool state)
     enum _MuteCondition mute_condition = state ? TX_MUTE : TX_UNMUTE;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     ALOGT("%s: Set mic mute: %d\n", __func__, state);
 =======
     ALOGV("*** %s: set mic mute: %d\n", __func__, state);
 >>>>>>> 05aac4e... hero: update audio
+=======
+    ALOGT("%s: Set mic mute: %d\n", __func__, state);
+>>>>>>> b8f0456... hero: restore stock mixer_paths/gains and policy and modify audio driver
 
     pthread_mutex_lock(&adev->lock);
     if (adev->in_call) {
